@@ -1,0 +1,26 @@
+@if(githubSearchResponse) {
+  <div class="stats">
+    <p class="stat">Page - {{ page }}</p>
+    <p class="stat">Sorting - {{ sorting }}</p>
+    <p class="stat">Total - {{ githubSearchResponse.total_count | number }} ({{ viewRepositories.length }} displaying)</p>
+    <button mat-stroked-button color="primary" (click)="loadMore()">Load more</button>
+    <button mat-stroked-button color="primary" (click)="changeSorting()">Change order</button>
+    <mat-slide-toggle color="primary" (change)="toggleFavouritesData($event)">Favourites only</mat-slide-toggle>
+  </div>
+  <div class="container">
+    <app-archived-stats [data]="archivedStats" />
+    <app-languages-stats [data]="languageStats"/>
+
+    <div class="table-contaner">
+      <app-table-widget
+        (toggleFavourite)="toggleFavourite($event)"
+        [githubRepositories]="viewRepositories"
+        [favorites]="favorites"
+      />
+    </div>
+  </div>
+} @else {
+  <div class="loading">
+    Loading...<mat-spinner [diameter]="35"></mat-spinner>
+  </div>
+}
