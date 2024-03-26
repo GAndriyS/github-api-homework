@@ -12,7 +12,7 @@
     npm i
     ```
     
-3 **Run the server locally**:
+3. **Run the server locally**:
     ```sh
     npm start
     ```
